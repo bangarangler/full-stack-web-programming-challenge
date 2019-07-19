@@ -1,0 +1,17 @@
+@import './SCSS/index.scss';
+
+.heading {
+  padding: 3%;
+  background-color: #38323b;
+
+  .headingTitle {
+    color: #a61fe1;
+    text-align: center;
+    font-family: $stylishText;
+    font-weight: $bold;
+    text-transform: uppercase;
+    font-size: 5.5rem;
+  }
+}
+
+

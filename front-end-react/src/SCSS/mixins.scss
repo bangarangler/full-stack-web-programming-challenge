@@ -1,0 +1,59 @@
+@mixin center($direction) {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: $direction;
+}
+
+@mixin customLayout($justify, $align, $direction) {
+  display: flex;
+  justify-content: $justify;
+  align-items: $align;
+  flex-direction: $direction;
+}
+
+@mixin customBorder($size, $style, $color) {
+  border: $size $style $color;
+}
+
+@mixin showMe() {
+  border: 2px solid limegreen;
+}
+
+@mixin customBtn($width, $height, $bg-color, $font-color, $font-size) {
+  border-radius: 15px;
+  @include center(row);
+  width: $width;
+  height: $height;
+  background: $bg-color;
+  color: $font-color;
+  font-size: $font-size;
+  border: 2px solid $font-color;
+  cursor: pointer;
+  &:hover {
+    background: $font-color;
+    color: $bg-color;
+    border: 2px solid $bg-color;
+  }
+}
+
+@mixin simpleBtn($width, $height, $color, $bg-color) {
+  width: $width;
+  height: $height;
+  color: $color;
+  background-color: $bg-color;
+  border: 2px solid $color;
+  cursor: pointer;
+  &:hover {
+    color: $bg-color;
+    background-color: $color;
+    border: 2px solid $bg-color;
+  }
+}
+
+@mixin grid($display, $gtc, $gtr, $gg) {
+  display: $display;
+  grid-template-columns: $gtc;
+  grid-template-rows: $gtr;
+  grid-gap: $gg;
+}
