@@ -2,10 +2,10 @@
 
 .heading {
   padding: 3%;
-  background-color: #38323b;
+  background-color: $bgColorDark;
 
   .headingTitle {
-    color: #a61fe1;
+    color: $purp;
     text-align: center;
     font-family: $stylishText;
     font-weight: $bold;

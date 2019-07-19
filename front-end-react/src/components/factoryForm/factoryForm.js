@@ -2,29 +2,53 @@ import React, {useState} from 'react';
 
 import useFormState from '../../hooks/useFormState.js';
 
-const FactoryForm = () => {
+import styles from './factoryForm.module.scss'
+
+class Factory {
+  constructor(name, children, lRange, hRange) {
+    this.name = name;
+    this.children = children;
+    this.lRange = lRange;
+    this.hRange = hRange;
+  }
+}
+
+const FactoryForm = ({ generateFactory }) => {
+  const [newFactory, setNewFactory] = useState({});
   const [factoryName, setFactoryName, resetFactoryName] = useFormState('');
+  const [childrenGenerate, setChildrenGenerate, resetChildrenGenerate] = useFormState("")
   const [lowRange, setLowRange, resetLowRange] = useFormState('');
   const [highRange, setHighRange, resetHighRange] = useFormState('');
   const reset = () => {
     resetFactoryName();
+    resetChildrenGenerate();
     resetLowRange();
     resetHighRange();
   };
+
   const factoryAddHandler = e => {
     e.preventDefault();
-    console.log(
-      'factory name: ',
-      factoryName,
-      'Low Range: ',
-      lowRange,
-      'HighRange: ',
-      highRange,
-    );
-    reset()
+    let tempFact = {}
+     tempFact = new Factory(factoryName, childrenGenerate, lowRange, highRange)
+ console.log(tempFact)
+    setNewFactory({...newFactory, tempFact})
+
+    console.log('newFactory: ', newFactory)
+    //console.log(
+      //'factory name: ',
+      //factoryName,
+      //'Children to Generate: ',
+      //childrenGenerate,
+      //'Low Range: ',
+      //lowRange,
+      //'HighRange: ',
+      //highRange,
+    //);
+    //reset()
   };
+
   return (
-    <form>
+    <form className={styles.Form}>
       <label htmlFor="factoryName">Factory Name</label>
       <input
         type="text"
@@ -33,6 +57,14 @@ const FactoryForm = () => {
         placeholder="Factory Name..."
         onChange={setFactoryName}
       />
+    <label htmlFor="childToGen">How many children should your Factory generate? (Limit 15)</label>
+    <input
+      type="text"
+      name="childToGen"
+      value={childrenGenerate}
+      placeholder="Children to generate..."
+      onChange={setChildrenGenerate}
+    />
       <label htmlFor="lowRange">Low Range</label>
       <input
         type="text"
@@ -49,7 +81,7 @@ const FactoryForm = () => {
         placeholder="High Range..."
         onChange={setHighRange}
       />
-      <button type="submit" onClick={e => factoryAddHandler(e)}>
+      <button className={styles.GenerateBtn} type="submit" onClick={e => factoryAddHandler(e)}>
         Generate Factory
       </button>
     </form>
