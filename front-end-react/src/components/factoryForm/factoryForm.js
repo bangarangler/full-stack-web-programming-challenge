@@ -4,17 +4,17 @@ import useFormState from '../../hooks/useFormState.js';
 
 import styles from './factoryForm.module.scss'
 
-class Factory {
-  constructor(name, children, lRange, hRange) {
-    this.name = name;
-    this.children = children;
-    this.lRange = lRange;
-    this.hRange = hRange;
-  }
-}
+//class Factory {
+  //constructor(name, children, lRange, hRange) {
+    //this.name = name;
+    //this.children = children;
+    //this.lRange = lRange;
+    //this.hRange = hRange;
+  //}
+//}
 
 const FactoryForm = ({ generateFactory }) => {
-  const [newFactory, setNewFactory] = useState({});
+  const [newFactory, setNewFactory] = useState([]);
   const [factoryName, setFactoryName, resetFactoryName] = useFormState('');
   const [childrenGenerate, setChildrenGenerate, resetChildrenGenerate] = useFormState("")
   const [lowRange, setLowRange, resetLowRange] = useFormState('');
@@ -25,27 +25,21 @@ const FactoryForm = ({ generateFactory }) => {
     resetLowRange();
     resetHighRange();
   };
-
+  console.log(newFactory)
   const factoryAddHandler = e => {
     e.preventDefault();
-    let tempFact = {}
-     tempFact = new Factory(factoryName, childrenGenerate, lowRange, highRange)
- console.log(tempFact)
-    setNewFactory({...newFactory, tempFact})
+    let tempFact = []
+    tempFact = [{factName: factoryName, childGen: childrenGenerate, lRange: lowRange, hRange: highRange}]
+    setNewFactory([...newFactory, tempFact])
+    //console.log('newFactory after: ', newFactory)
 
-    console.log('newFactory: ', newFactory)
-    //console.log(
-      //'factory name: ',
-      //factoryName,
-      //'Children to Generate: ',
-      //childrenGenerate,
-      //'Low Range: ',
-      //lowRange,
-      //'HighRange: ',
-      //highRange,
-    //);
-    //reset()
+    handleSubmit()
+    reset()
   };
+
+  const handleSubmit = () => {
+    generateFactory(newFactory)
+  }
 
   return (
     <form className={styles.Form}>

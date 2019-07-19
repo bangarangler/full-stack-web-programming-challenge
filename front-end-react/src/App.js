@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 
 import FactoryForm from './components/factoryForm/factoryForm.js';
+import FactoriesDisplay from './components/FactoriesDisplay/FactoriesDisplay.js';
 
 import './App.scss';
 import styles from './SCSS/index.scss';
@@ -14,8 +15,13 @@ function App() {
   )
 
   const generateFactory = (newFact) => {
-    setRoot(newFact)
+    console.log("From generateFactory: ", newFact)
+    setRoot({...root, factories: [...newFact]})
+    console.log("root", root)
   }
+
+  //console.log("root", root.factories)
+
   return (
     <div className="App">
     <header className='heading'>
@@ -23,6 +29,7 @@ function App() {
     </header>
     <main>
       <FactoryForm generateFactory={generateFactory} />
+      <FactoriesDisplay root={root.factories} />
     </main>
     </div>
   );
