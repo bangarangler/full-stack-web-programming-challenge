@@ -60,7 +60,6 @@ const FactoryForm = ({ generateFactory }) => {
   };
 
   const postFact = (numberOfChildren) => {
-    //axios.post('http://mongodb+srv://jon:2bxme2RqsHdTustzi4@@full-stack-web-backend-hf8uf.mongodb.net/root/add-factory', {
     console.log(factoryName, childrenGenerate, lowRange, highRange, children)
     axios.post('http://localhost:4000/add-factory', {
       factName: factoryName,

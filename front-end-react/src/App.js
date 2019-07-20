@@ -1,18 +1,20 @@
 import React, { useState } from 'react';
 
+import useGetFactories from './hooks/useGetFactories.js'
 
 import FactoryForm from './components/factoryForm/factoryForm.js';
 import FactoriesDisplay from './components/FactoriesDisplay/FactoriesDisplay.js';
+import Spinner from './components/Spinner/Spinner.js'
 
 import './App.scss';
-import styles from './SCSS/index.scss';
+import './SCSS/index.scss';
 
 function App() {
+  const { loading, data } = useGetFactories(
+    'http://localhost:4000/get-factory'
+  )
+  console.log(data)
   const [root, setRoot] = useState([])
-  //if (root.length !== 0) {
-    //console.log("Axios: ", root[0].factName)
-  //}
-
 
   const generateFactory = async (newFact) => {
     //console.log("From generateFactory: ", newFact)
@@ -28,7 +30,8 @@ function App() {
     </header>
     <main>
       <FactoryForm generateFactory={generateFactory} />
-      <FactoriesDisplay root={root} />
+      <FactoriesDisplay root={root} data={data} setRoot={setRoot} />
+    {loading && <Spinner />}
     </main>
     </div>
   );
