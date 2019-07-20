@@ -1,5 +1,7 @@
 import React, {useState, useEffect, useRef} from 'react';
 
+import axios from 'axios'
+
 import useFormState from '../../hooks/useFormState.js';
 
 import styles from './factoryForm.module.scss'
@@ -12,6 +14,7 @@ const FactoryForm = ({ generateFactory }) => {
   const [childrenGenerate, setChildrenGenerate, resetChildrenGenerate] = useFormState([])
   const [children, setChildren] = useState([])
   //const [toggle, setToggle] = useState(false)
+  //console.log("Ax: ", factoryName, childrenGenerate, lowRange, highRange, children)
   const reset = () => {
     resetFactoryName();
     resetChildrenGenerate();
@@ -20,7 +23,7 @@ const FactoryForm = ({ generateFactory }) => {
   };
 
   //useEffect(() => {
-    //randomNumberGenerator()
+    //postFact()
   //}, [highRange])
 
   const helperGenerator = (low, high) => {
@@ -33,6 +36,7 @@ const FactoryForm = ({ generateFactory }) => {
     numbers[i] = helperGenerator(lowRange, highRange)
     console.log(numbers)
   }
+    setChildren(numbers)
     return numbers
    //setChildren(numbers)
   }
@@ -44,19 +48,34 @@ const FactoryForm = ({ generateFactory }) => {
     } else {
     //let tempFact = {}
       const numberOfChildren = randomNumberGenerator()
-      console.log("children: ", children)
+      //console.log("children: ", children)
       let tempFact = {factName: factoryName, childGen: childrenGenerate, lRange: lowRange, hRange: highRange, children: numberOfChildren}
         //setNewFactory([...newFactory, ...tempFact])
       setMessage(null)
       generateFactory(tempFact)
     //console.log('newFactory after: ', newFactory)
+      postFact(numberOfChildren)
     reset()
       }
   };
 
-  const renameFactory = () => {
-    setFactoryName(factoryName)
+  const postFact = (numberOfChildren) => {
+    //axios.post('http://mongodb+srv://jon:2bxme2RqsHdTustzi4@@full-stack-web-backend-hf8uf.mongodb.net/root/add-factory', {
+    console.log(factoryName, childrenGenerate, lowRange, highRange, children)
+    axios.post('http://localhost:4000/add-factory', {
+      factName: factoryName,
+      childGen: childrenGenerate,
+      lRange: lowRange,
+      hRange: highRange,
+      children: numberOfChildren
+    }).then(res => {
+      console.log(res)
+    }).catch(err => console.log(err))
   }
+
+  //const renameFactory = () => {
+    //setFactoryName(factoryName)
+  //}
 
 
   return (

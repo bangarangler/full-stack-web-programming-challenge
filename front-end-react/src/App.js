@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 
+
 import FactoryForm from './components/factoryForm/factoryForm.js';
 import FactoriesDisplay from './components/FactoriesDisplay/FactoriesDisplay.js';
 
@@ -8,6 +9,10 @@ import styles from './SCSS/index.scss';
 
 function App() {
   const [root, setRoot] = useState([])
+  //if (root.length !== 0) {
+    //console.log("Axios: ", root[0].factName)
+  //}
+
 
   const generateFactory = async (newFact) => {
     //console.log("From generateFactory: ", newFact)
