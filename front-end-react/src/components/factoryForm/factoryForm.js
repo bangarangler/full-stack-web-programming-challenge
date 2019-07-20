@@ -10,6 +10,7 @@ const FactoryForm = ({ generateFactory }) => {
   const [lowRange, setLowRange, resetLowRange] = useFormState('');
   const [highRange, setHighRange, resetHighRange] = useFormState('');
   const [childrenGenerate, setChildrenGenerate, resetChildrenGenerate] = useFormState([])
+  const [children, setChildren] = useState([])
   const reset = () => {
     resetFactoryName();
     resetChildrenGenerate();
@@ -17,27 +18,28 @@ const FactoryForm = ({ generateFactory }) => {
     resetHighRange();
   };
 
-  const randomNumberGenerator = (low, high) => {
-    let children = [];
-    const min = Math.ceil(Number(lowRange));
-    const max = Math.floor(Number(highRange));
-    const number = Math.floor(Math.random() * (max - min)) + min + 1;
-    console.log(number)
-    for (let num = number; num > 0; --num) {
-      children.push(num)
-      console.log(children)
-    }
-    setChildrenGenerate(children)
-    }
+  const helperGenerator = (low, high) => {
+    return Math.floor(Math.random() * (Number(high) - Number(low) + 1) + Number(low))
+  }
 
-  const factoryAddHandler = e => {
+  const randomNumberGenerator = () => {
+  let numbers = new Array(Number(childrenGenerate));
+  for (let i = 0; i < numbers.length; i++) {
+    numbers[i] = helperGenerator(lowRange, highRange)
+    console.log(numbers)
+  }
+   setChildren(numbers)
+  }
+
+  const factoryAddHandler = async e => {
     e.preventDefault();
     if (childrenGenerate > 15) {
       setMessage("Sorry 15 is the limit!")
     } else {
     //let tempFact = {}
-      randomNumberGenerator(lowRange, highRange)
-      let tempFact = {factName: factoryName, childGen: childrenGenerate, lRange: lowRange, hRange: highRange}
+      await randomNumberGenerator()
+      console.log("children: ", children)
+      let tempFact = {factName: factoryName, childGen: childrenGenerate, lRange: lowRange, hRange: highRange, children: [...children]}
         //setNewFactory([...newFactory, ...tempFact])
       setMessage(null)
       generateFactory(tempFact)
