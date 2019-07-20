@@ -1,0 +1,25 @@
+@import '../../SCSS/index.scss';
+
+.Wrapper {
+  .Display {
+    //@include showMe()
+    @include customLayout(flex-start, center, row);
+    flex-wrap: wrap;
+    width: 80%;
+    margin: 0 auto;
+    .Name {
+
+    }
+    .flex {
+      @include customLayout(center, center, column);
+      //height: 80vh;
+      width: 90%;
+      margin: 1% auto;
+      @include showMe();
+      @include customBorder(2px, solid, $purp);
+      .Children {
+        //@include showMe();
+      }
+    }
+  }
+}

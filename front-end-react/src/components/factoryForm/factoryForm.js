@@ -54,6 +54,10 @@ const FactoryForm = ({ generateFactory }) => {
       }
   };
 
+  const renameFactory = () => {
+    setFactoryName(factoryName)
+  }
+
 
   return (
     <form className={styles.Form}>
