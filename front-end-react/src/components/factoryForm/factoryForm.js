@@ -1,20 +1,11 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect, useRef} from 'react';
 
 import useFormState from '../../hooks/useFormState.js';
 
 import styles from './factoryForm.module.scss'
 
-//class Factory {
-  //constructor(name, children, lRange, hRange) {
-    //this.name = name;
-    //this.children = children;
-    //this.lRange = lRange;
-    //this.hRange = hRange;
-  //}
-//}
-
 const FactoryForm = ({ generateFactory }) => {
-  const [newFactory, setNewFactory] = useState([]);
+  const [message, setMessage] = useState(null)
   const [factoryName, setFactoryName, resetFactoryName] = useFormState('');
   const [childrenGenerate, setChildrenGenerate, resetChildrenGenerate] = useFormState("")
   const [lowRange, setLowRange, resetLowRange] = useFormState('');
@@ -25,21 +16,22 @@ const FactoryForm = ({ generateFactory }) => {
     resetLowRange();
     resetHighRange();
   };
-  console.log(newFactory)
+
   const factoryAddHandler = e => {
     e.preventDefault();
-    let tempFact = []
-    tempFact = [{factName: factoryName, childGen: childrenGenerate, lRange: lowRange, hRange: highRange}]
-    setNewFactory([...newFactory, tempFact])
+    if (childrenGenerate > 15) {
+      setMessage("Sorry 15 is the limit!")
+    } else {
+    //let tempFact = {}
+    let tempFact = {factName: factoryName, childGen: childrenGenerate, lRange: lowRange, hRange: highRange}
+        //setNewFactory([...newFactory, ...tempFact])
+      setMessage(null)
+      generateFactory(tempFact)
     //console.log('newFactory after: ', newFactory)
-
-    handleSubmit()
     reset()
+      }
   };
 
-  const handleSubmit = () => {
-    generateFactory(newFactory)
-  }
 
   return (
     <form className={styles.Form}>
@@ -78,6 +70,7 @@ const FactoryForm = ({ generateFactory }) => {
       <button className={styles.GenerateBtn} type="submit" onClick={e => factoryAddHandler(e)}>
         Generate Factory
       </button>
+      {message}
     </form>
   );
 };

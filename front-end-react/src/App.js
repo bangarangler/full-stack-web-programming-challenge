@@ -7,21 +7,15 @@ import './App.scss';
 import styles from './SCSS/index.scss';
 
 function App() {
-  const [root, setRoot] = useState(
-    {
-      name: 'root',
-      factories: []
-    }
-  )
+  const [root, setRoot] = useState([])
 
   const generateFactory = (newFact) => {
     console.log("From generateFactory: ", newFact)
-    setRoot({...root, factories: [...newFact]})
+    setRoot([...root, newFact])
     console.log("root", root)
   }
 
-  //console.log("root", root.factories)
-
+  console.log("root: ", root)
   return (
     <div className="App">
     <header className='heading'>
@@ -29,7 +23,7 @@ function App() {
     </header>
     <main>
       <FactoryForm generateFactory={generateFactory} />
-      <FactoriesDisplay root={root.factories} />
+      <FactoriesDisplay root={root} />
     </main>
     </div>
   );
