@@ -4,12 +4,10 @@ const FactoriesDisplay = ({ root }) => {
   return (
     <div>
     {root.map((factory, index) => {
-      return (
-        <div key={index}>
-      <p>{factory.factName}</p>
-        </div>
-      )
-    })}
+      console.log("Fact: ", factory.children)
+      console.log("Factory: ", factory.children.map(child => console.log(child)))
+      })}
+      })
     </div>
   )
 }

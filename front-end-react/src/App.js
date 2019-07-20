@@ -9,9 +9,9 @@ import styles from './SCSS/index.scss';
 function App() {
   const [root, setRoot] = useState([])
 
-  const generateFactory = (newFact) => {
-    console.log("From generateFactory: ", newFact)
-    setRoot([...root, newFact])
+  const generateFactory = async (newFact) => {
+    //console.log("From generateFactory: ", newFact)
+    await setRoot([...root, newFact])
     console.log("root", root)
   }
 
@@ -19,7 +19,7 @@ function App() {
   return (
     <div className="App">
     <header className='heading'>
-    <h1 className="headingTitle">{root.name}</h1>
+    <h1 className="headingTitle">Root</h1>
     </header>
     <main>
       <FactoryForm generateFactory={generateFactory} />
