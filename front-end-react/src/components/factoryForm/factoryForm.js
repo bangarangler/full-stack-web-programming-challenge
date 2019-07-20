@@ -7,9 +7,9 @@ import styles from './factoryForm.module.scss'
 const FactoryForm = ({ generateFactory }) => {
   const [message, setMessage] = useState(null)
   const [factoryName, setFactoryName, resetFactoryName] = useFormState('');
-  const [childrenGenerate, setChildrenGenerate, resetChildrenGenerate] = useFormState("")
   const [lowRange, setLowRange, resetLowRange] = useFormState('');
   const [highRange, setHighRange, resetHighRange] = useFormState('');
+  const [childrenGenerate, setChildrenGenerate, resetChildrenGenerate] = useFormState([])
   const reset = () => {
     resetFactoryName();
     resetChildrenGenerate();
@@ -17,13 +17,27 @@ const FactoryForm = ({ generateFactory }) => {
     resetHighRange();
   };
 
+  const randomNumberGenerator = (low, high) => {
+    let children = [];
+    const min = Math.ceil(Number(lowRange));
+    const max = Math.floor(Number(highRange));
+    const number = Math.floor(Math.random() * (max - min)) + min + 1;
+    console.log(number)
+    for (let num = number; num > 0; --num) {
+      children.push(num)
+      console.log(children)
+    }
+    setChildrenGenerate(children)
+    }
+
   const factoryAddHandler = e => {
     e.preventDefault();
     if (childrenGenerate > 15) {
       setMessage("Sorry 15 is the limit!")
     } else {
     //let tempFact = {}
-    let tempFact = {factName: factoryName, childGen: childrenGenerate, lRange: lowRange, hRange: highRange}
+      randomNumberGenerator(lowRange, highRange)
+      let tempFact = {factName: factoryName, childGen: childrenGenerate, lRange: lowRange, hRange: highRange}
         //setNewFactory([...newFactory, ...tempFact])
       setMessage(null)
       generateFactory(tempFact)
