@@ -9,9 +9,9 @@ import styles from './factoryForm.module.scss'
 const FactoryForm = ({ generateFactory, setRoot }) => {
   const [message, setMessage] = useState(null)
   const [factoryName, setFactoryName, resetFactoryName] = useFormState('');
-  const [lowRange, setLowRange, resetLowRange] = useFormState('');
-  const [highRange, setHighRange, resetHighRange] = useFormState('');
-  const [childrenGenerate, setChildrenGenerate, resetChildrenGenerate] = useFormState([])
+  const [lowRange, setLowRange, resetLowRange] = useFormState(undefined);
+  const [highRange, setHighRange, resetHighRange] = useFormState(undefined);
+  const [childrenGenerate, setChildrenGenerate, resetChildrenGenerate] = useFormState(undefined)
   const [children, setChildren] = useState([])
   //const [toggle, setToggle] = useState(false)
   //console.log("Ax: ", factoryName, childrenGenerate, lowRange, highRange, children)
@@ -47,8 +47,6 @@ const FactoryForm = ({ generateFactory, setRoot }) => {
       setMessage("Sorry 15 is the limit!")
     } else if (factoryName === "") {
       setMessage("Factory Name Can Not Be Empty")
-    } else if (lowRange && highRange !== Number) {
-      setMessage('Need to enter numbers for Children to generate, Low Range, and High Range')
     } else {
     //let tempFact = {}
       const numberOfChildren = randomNumberGenerator()
@@ -72,11 +70,14 @@ const FactoryForm = ({ generateFactory, setRoot }) => {
       hRange: highRange,
       children: numberOfChildren
     }).then(async ( res ) => {
-      console.log(res.data)
+      console.log(res)
+      if (res.status !== 200) {
+        setMessage(res.data)
       await axios.get('http://localhost:4000/get-factory').then(res => {
         console.log("get log: ", res.data)
           setRoot(res.data)
       })
+      }
     }).catch(err => console.log(err))
   }
 
@@ -96,7 +97,7 @@ const FactoryForm = ({ generateFactory, setRoot }) => {
     <input
       type="number"
       name="childToGen"
-      value={childrenGenerate}
+      value={Number(childrenGenerate)}
       placeholder="Children to generate..."
       onChange={setChildrenGenerate}
     />
@@ -104,7 +105,7 @@ const FactoryForm = ({ generateFactory, setRoot }) => {
       <input
         type="number"
         name="lowRange"
-        value={lowRange}
+        value={Number(lowRange)}
         placeholder="Low Range..."
         onChange={setLowRange}
       />
@@ -112,7 +113,7 @@ const FactoryForm = ({ generateFactory, setRoot }) => {
       <input
         type="number"
         name="highRange"
-        value={highRange}
+        value={Number(highRange)}
         placeholder="High Range..."
         onChange={setHighRange}
       />

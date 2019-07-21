@@ -9,7 +9,7 @@ const RenameForm = ({ factory, root, setRoot, showForm, setShowForm }) => {
 
   const submitNewName = (e, id) => {
     e.preventDefault();
-    console.log("id: ", id)
+    //console.log("id: ", id)
     let update;
     root.map(node => {
       //console.log(node.factName)
