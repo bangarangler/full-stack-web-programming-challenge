@@ -34,7 +34,7 @@ function App() {
     <h1 className="headingTitle">Root</h1>
     </header>
     <main>
-      <FactoryForm generateFactory={generateFactory} />
+      <FactoryForm generateFactory={generateFactory} setRoot={setRoot} />
       <FactoriesDisplay root={root} data={data} setRoot={setRoot} />
     {loading && <Spinner />}
     </main>

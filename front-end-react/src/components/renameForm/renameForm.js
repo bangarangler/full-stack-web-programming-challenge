@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from 'react'
 
+import axios from 'axios'
+
 import useFormState from '../../hooks/useFormState.js';
 
 const RenameForm = ({ factory, root, setRoot, showForm, setShowForm }) => {
@@ -18,6 +20,7 @@ const RenameForm = ({ factory, root, setRoot, showForm, setShowForm }) => {
         console.log("updated root?: ", root)
       }
       //setRoot(root)
+      axiosUpdate(id, update)
       setShowForm(!showForm)
       return update
     })
@@ -26,6 +29,19 @@ const RenameForm = ({ factory, root, setRoot, showForm, setShowForm }) => {
   useEffect(() => {
     setRoot(root)
   }, [submitNewName])
+
+ const axiosUpdate = (id, name) => {
+   const data = {
+    _id: id,
+     newName: updateName
+   }
+   console.log("update data: ", data)
+   axios.put('http://localhost:4000/update-factory', data).then(res => {
+     console.log(`res, ${res.data}`)
+   }).catch(err => {
+     console.log(err)
+   })
+  }
 
   return (
     <form>

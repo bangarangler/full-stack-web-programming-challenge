@@ -6,7 +6,7 @@ import useFormState from '../../hooks/useFormState.js';
 
 import styles from './factoryForm.module.scss'
 
-const FactoryForm = ({ generateFactory }) => {
+const FactoryForm = ({ generateFactory, setRoot }) => {
   const [message, setMessage] = useState(null)
   const [factoryName, setFactoryName, resetFactoryName] = useFormState('');
   const [lowRange, setLowRange, resetLowRange] = useFormState('');
@@ -67,8 +67,12 @@ const FactoryForm = ({ generateFactory }) => {
       lRange: lowRange,
       hRange: highRange,
       children: numberOfChildren
-    }).then(res => {
-      console.log(res)
+    }).then(async ( res ) => {
+      console.log(res.data)
+      await axios.get('http://localhost:4000/get-factory').then(res => {
+        console.log("get log: ", res.data)
+          setRoot(res.data)
+      })
     }).catch(err => console.log(err))
   }
 
