@@ -8,7 +8,7 @@ import styles from './factoryForm.module.scss'
 
 const FactoryForm = ({ generateFactory, setRoot }) => {
   const [message, setMessage] = useState(null)
-  const [factoryName, setFactoryName, resetFactoryName] = useFormState('');
+  const [factoryName, setFactoryName, resetFactoryName] = useFormState("");
   const [lowRange, setLowRange, resetLowRange] = useFormState(undefined);
   const [highRange, setHighRange, resetHighRange] = useFormState(undefined);
   const [childrenGenerate, setChildrenGenerate, resetChildrenGenerate] = useFormState(undefined)
@@ -84,7 +84,9 @@ const FactoryForm = ({ generateFactory, setRoot }) => {
 
 
   return (
+    <div className={styles.Container}>
     <form className={styles.Form}>
+    <h3 className={styles.formHeading}>Generate your Factory</h3>
       <label htmlFor="factoryName">Factory Name</label>
       <input
         type="text"
@@ -118,10 +120,11 @@ const FactoryForm = ({ generateFactory, setRoot }) => {
         onChange={setHighRange}
       />
       <button className={styles.GenerateBtn} type="submit" onClick={e => factoryAddHandler(e)}>
-        Generate Factory
+        Create Factory
       </button>
       {message}
     </form>
+  </div>
   );
 };
 
