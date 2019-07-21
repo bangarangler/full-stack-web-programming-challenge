@@ -20,7 +20,7 @@ const FactoriesDisplay = ({ root, data, setRoot }) => {
     <div>
     {root.map((factory, index) => {
       return (
-        <Factory key={index} factory={factory} />
+        <Factory key={index} setRoot={setRoot} root={root} factory={factory} />
       )
     })}
     </div>
