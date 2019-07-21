@@ -45,6 +45,10 @@ const FactoryForm = ({ generateFactory, setRoot }) => {
     e.preventDefault();
     if (childrenGenerate > 15) {
       setMessage("Sorry 15 is the limit!")
+    } else if (factoryName === "") {
+      setMessage("Factory Name Can Not Be Empty")
+    } else if (lowRange && highRange !== Number) {
+      setMessage('Need to enter numbers for Children to generate, Low Range, and High Range')
     } else {
     //let tempFact = {}
       const numberOfChildren = randomNumberGenerator()
@@ -76,9 +80,6 @@ const FactoryForm = ({ generateFactory, setRoot }) => {
     }).catch(err => console.log(err))
   }
 
-  //const renameFactory = () => {
-    //setFactoryName(factoryName)
-  //}
 
 
   return (
@@ -93,7 +94,7 @@ const FactoryForm = ({ generateFactory, setRoot }) => {
       />
     <label htmlFor="childToGen">How many children should your Factory generate? (Limit 15)</label>
     <input
-      type="text"
+      type="number"
       name="childToGen"
       value={childrenGenerate}
       placeholder="Children to generate..."
@@ -101,7 +102,7 @@ const FactoryForm = ({ generateFactory, setRoot }) => {
     />
       <label htmlFor="lowRange">Low Range</label>
       <input
-        type="text"
+        type="number"
         name="lowRange"
         value={lowRange}
         placeholder="Low Range..."
@@ -109,7 +110,7 @@ const FactoryForm = ({ generateFactory, setRoot }) => {
       />
       <label htmlFor="highRange">High Range</label>
       <input
-        type="text"
+        type="number"
         name="highRange"
         value={highRange}
         placeholder="High Range..."
