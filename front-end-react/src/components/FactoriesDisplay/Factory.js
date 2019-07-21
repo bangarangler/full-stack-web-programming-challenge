@@ -1,4 +1,5 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
+import axios from 'axios'
 
 import RenameForm from '../renameForm/renameForm.js';
 
@@ -10,19 +11,34 @@ const Factory = ({ factory, root, setRoot }) => {
 
   const removeFactory = (e, id) => {
     e.preventDefault();
-    console.log(id)
     let keptFacts = []
       root.filter(node => {
-        console.log("node: ", node)
+        //console.log("node: ", node)
         if (node._id !== factory._id) {
           keptFacts.push(node)
           //console.log("keptFacts: ", keptFacts)
         }
         //return keptFacts
         setRoot(keptFacts)
+        console.log('factoryID: ', factory._id)
+        axiosRemove(factory._id)
         return null
       })
   }
+
+  const axiosRemove = (id) => {
+    console.log("axiosRemove id: ", id)
+    const data = {_id: id}
+    axios.delete('http://localhost:4000/remove-factory', {data}).then(res => {
+      console.log(`res: ${res.data}`)
+    }).catch(err => {
+      console.log(err)
+    })
+  }
+
+  //useEffect(() => {
+    //axiosRemove(id)
+  //},[removeFactory])
 
   return (
     <div className={styles.Wrapper}>
