@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 
 import useGetFactories from './hooks/useGetFactories.js'
 
@@ -15,12 +15,17 @@ function App() {
   )
   console.log(data)
   const [root, setRoot] = useState([])
+  const [toggle, setToggle] = useState(false)
 
   const generateFactory = async (newFact) => {
     //console.log("From generateFactory: ", newFact)
     await setRoot([...root, newFact])
     console.log("root", root)
   }
+
+  //useEffect(() => {
+    //setRoot()
+  //}, [root])
 
   console.log("root: ", root)
   return (

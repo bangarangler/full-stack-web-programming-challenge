@@ -44,7 +44,7 @@ const Factory = ({ factory, root, setRoot }) => {
     <div className={styles.Wrapper}>
     <div className={styles.Display} >
     <p className={styles.Name}><span onClick={(e) => removeFactory(e, factory._id)}>X</span>&nbsp; Factory Name: &nbsp; {factory.factName}<span onClick={() => setShowForm(!showForm)}>^</span></p>
-    {showForm && <RenameForm factory={factory}  />}
+    {showForm && <RenameForm factory={factory} root={root} setRoot={setRoot} showForm={showForm} setShowForm={setShowForm}  />}
     {factory.children.map((child, index) => {
       return (
         <div key={index} className={styles.flex}>
