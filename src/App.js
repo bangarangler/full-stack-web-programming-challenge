@@ -11,7 +11,8 @@ import './SCSS/index.scss';
 
 function App() {
   const { loading, data } = useGetFactories(
-    'http://localhost:4000/get-factory'
+    //'http://localhost:4000/get-factory'
+    'https://full-stack-web-challenge.herokuapp.com/get-factory'
   )
   console.log(data)
   const [root, setRoot] = useState([])
