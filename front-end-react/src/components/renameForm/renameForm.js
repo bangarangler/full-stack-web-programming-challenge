@@ -1,11 +1,11 @@
-import React, { useState, useEffect } from 'react'
+import React, {  useEffect } from 'react'
 
 import axios from 'axios'
 
 import useFormState from '../../hooks/useFormState.js';
 
 const RenameForm = ({ factory, root, setRoot, showForm, setShowForm }) => {
-  const [updateName, setUpdateName, resetUpdateName] = useFormState("")
+  const [updateName, setUpdateName] = useFormState("")
 
   const submitNewName = (e, id) => {
     e.preventDefault();
