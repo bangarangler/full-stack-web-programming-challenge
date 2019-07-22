@@ -63,7 +63,8 @@ const FactoryForm = ({ generateFactory, setRoot }) => {
 
   const postFact = (numberOfChildren) => {
     console.log(factoryName, childrenGenerate, lowRange, highRange, children)
-    axios.post('http://localhost:4000/add-factory', {
+    //axios.post('http://localhost:4000/add-factory', {
+    axios.post('https://full-stack-web-challenge.herokuapp.com/add-factory', {
       factName: factoryName,
       childGen: childrenGenerate,
       lRange: lowRange,

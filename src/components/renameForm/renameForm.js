@@ -36,7 +36,8 @@ const RenameForm = ({ factory, root, setRoot, showForm, setShowForm }) => {
      newName: updateName
    }
    console.log("update data: ", data)
-   axios.put('http://localhost:4000/update-factory', data).then(res => {
+   //axios.put('http://localhost:4000/update-factory', data).then(res => {
+   axios.put('https://full-stack-web-challenge.herokuapp.com/update-factory', data).then(res => {
      console.log(`res, ${res.data}`)
    }).catch(err => {
      console.log(err)
