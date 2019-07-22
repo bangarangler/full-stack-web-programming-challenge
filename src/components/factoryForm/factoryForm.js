@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 
 import axios from "axios";
+import uuid from "uuid/v4";
 
 import useFormState from "../../hooks/useFormState.js";
 
@@ -17,6 +18,7 @@ const FactoryForm = ({ generateFactory, setRoot }) => {
     resetChildrenGenerate
   ] = useFormState(undefined);
   const [children, setChildren] = useState([]);
+  const [id, setId] = useState("");
   //const [toggle, setToggle] = useState(false)
   //console.log("Ax: ", factoryName, childrenGenerate, lowRange, highRange, children)
   const reset = () => {
@@ -56,24 +58,26 @@ const FactoryForm = ({ generateFactory, setRoot }) => {
     } else {
       //let tempFact = {}
       const numberOfChildren = randomNumberGenerator();
+      const id = uuid();
       //console.log("children: ", children)
       let tempFact = {
         factName: factoryName,
         childGen: childrenGenerate,
         lRange: lowRange,
         hRange: highRange,
-        children: numberOfChildren
+        children: numberOfChildren,
+        id: id
       };
       //setNewFactory([...newFactory, ...tempFact])
       setMessage(null);
       generateFactory(tempFact);
       //console.log('newFactory after: ', newFactory)
-      postFact(numberOfChildren);
+      postFact(numberOfChildren, id);
       reset();
     }
   };
 
-  const postFact = numberOfChildren => {
+  const postFact = (numberOfChildren, id) => {
     console.log(factoryName, childrenGenerate, lowRange, highRange, children);
     //axios.post('http://localhost:4000/add-factory', {
     axios
@@ -82,10 +86,11 @@ const FactoryForm = ({ generateFactory, setRoot }) => {
         childGen: childrenGenerate,
         lRange: lowRange,
         hRange: highRange,
-        children: numberOfChildren
+        children: numberOfChildren,
+        id: id
       })
       .then(async res => {
-        console.log(res.data["_id"]);
+        console.log(res.data);
         if (res.status !== 200) {
           setMessage(res.data);
           setRoot(res.data);
