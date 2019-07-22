@@ -64,7 +64,7 @@ const FactoryForm = ({ generateFactory, setRoot }) => {
   const postFact = (numberOfChildren) => {
     console.log(factoryName, childrenGenerate, lowRange, highRange, children)
     //axios.post('http://localhost:4000/add-factory', {
-    axios.post('https://full-stack-web-challenge.herokuapp.com/add-factory',{crossdomain: true}, {
+    axios.post('https://full-stack-web-challenge.herokuapp.com/add-factory',{crossdomain: true, method: 'GET', mode: 'no-cors', headers: {'Access-Control-Allow-Origin': '*', 'Content-Type': 'application/json'}}, {
       factName: factoryName,
       childGen: childrenGenerate,
       lRange: lowRange,
