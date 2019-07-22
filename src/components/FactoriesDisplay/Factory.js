@@ -36,10 +36,6 @@ const Factory = ({ factory, root, setRoot }) => {
       })
       .then(res => {
         console.log(`res: ${res.data}`);
-        axios
-          .get("https://full-stack-web-challenge.herokuapp.com/get-factory")
-          .then(res => console.log("axios remove: ", res.data));
-        setRoot(res.data);
       })
       .catch(err => {
         console.log(err);

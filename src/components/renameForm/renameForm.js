@@ -42,14 +42,8 @@ const RenameForm = ({ factory, root, setRoot, showForm, setShowForm }) => {
         "https://full-stack-web-challenge.herokuapp.com/update-factory",
         data
       )
-      .then(async res => {
+      .then(res => {
         console.log(`res, ${res.data}`);
-        await axios
-          .get("https://full-stack-web-challenge.herokuapp.com/get-factory")
-          .then(res => {
-            console.log("res update: ", res);
-            setRoot(res.data);
-          });
       })
       .catch(err => {
         console.log(err);
