@@ -90,7 +90,7 @@ const FactoryForm = ({ generateFactory, setRoot }) => {
         ident: ident
       })
       .then(async res => {
-        console.log(res.data);
+        console.log(res.data.ident);
         if (res.status !== 200) {
           setMessage(res.data);
           setRoot(res.data);
