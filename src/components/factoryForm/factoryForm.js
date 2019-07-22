@@ -58,7 +58,7 @@ const FactoryForm = ({ generateFactory, setRoot }) => {
     } else {
       //let tempFact = {}
       const numberOfChildren = randomNumberGenerator();
-      const id = uuid();
+      const ident = uuid();
       //console.log("children: ", children)
       let tempFact = {
         factName: factoryName,
@@ -66,18 +66,18 @@ const FactoryForm = ({ generateFactory, setRoot }) => {
         lRange: lowRange,
         hRange: highRange,
         children: numberOfChildren,
-        id: id
+        ident: ident
       };
       //setNewFactory([...newFactory, ...tempFact])
       setMessage(null);
       generateFactory(tempFact);
       //console.log('newFactory after: ', newFactory)
-      postFact(numberOfChildren, id);
+      postFact(numberOfChildren, ident);
       reset();
     }
   };
 
-  const postFact = (numberOfChildren, id) => {
+  const postFact = (numberOfChildren, ident) => {
     console.log(factoryName, childrenGenerate, lowRange, highRange, children);
     //axios.post('http://localhost:4000/add-factory', {
     axios
@@ -87,10 +87,10 @@ const FactoryForm = ({ generateFactory, setRoot }) => {
         lRange: lowRange,
         hRange: highRange,
         children: numberOfChildren,
-        id: id
+        ident: ident
       })
       .then(async res => {
-        console.log(res.data._id);
+        console.log(res.data);
         if (res.status !== 200) {
           setMessage(res.data);
           setRoot(res.data);
