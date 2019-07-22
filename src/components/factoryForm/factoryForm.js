@@ -92,7 +92,7 @@ const FactoryForm = ({ generateFactory, setRoot }) => {
       .then(async res => {
         console.log(res.data);
         if (res.status !== 200) {
-          setMessage(res.data);
+          setMessage(res.data._id);
           setRoot(res.data);
           //await axios.get('http://localhost:4000/get-factory').then(res => {
           await axios
