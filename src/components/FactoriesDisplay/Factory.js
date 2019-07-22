@@ -30,7 +30,7 @@ const Factory = ({ factory, root, setRoot }) => {
     console.log("axiosRemove id: ", id)
     const data = {_id: id}
     //axios.delete('http://localhost:4000/remove-factory', {data}).then(res => {
-    axios.delete('https://full-stack-web-challenge.herokuapp.com/remove-factory',{crossdomain: true}, {data}).then(res => {
+    axios.delete('https://full-stack-web-challenge.herokuapp.com/remove-factory', {data}).then(res => {
       console.log(`res: ${res.data}`)
     }).catch(err => {
       console.log(err)
