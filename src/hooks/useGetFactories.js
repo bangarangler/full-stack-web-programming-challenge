@@ -9,7 +9,7 @@ const useGetFactories = (url, initValue) => {
       const fetchData = async function() {
         try {
           setLoading(true)
-          const response = await axios.get(url)
+          const response = await axios.get(url, {crossdomain:true})
           if (response.status === 200) {
             setData(response.data)
           }
