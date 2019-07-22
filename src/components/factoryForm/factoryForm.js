@@ -85,7 +85,7 @@ const FactoryForm = ({ generateFactory, setRoot }) => {
         children: numberOfChildren
       })
       .then(async res => {
-        console.log(res.data);
+        console.log(res.data["_id"]);
         if (res.status !== 200) {
           setMessage(res.data);
           //await axios.get('http://localhost:4000/get-factory').then(res => {
