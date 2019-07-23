@@ -92,10 +92,9 @@ const FactoryForm = ({ generateFactory, setRoot }) => {
       .then(async res => {
         if (res.status !== 200) {
           console.log("ERROR");
+          setMessage(res.data);
         }
         console.log(res.data);
-        setMessage(res.data);
-        setRoot(res.data);
         //await axios.get('http://localhost:4000/get-factory').then(res => {
         await axios
           .get("https://full-stack-web-challenge.herokuapp.com/get-factory")
