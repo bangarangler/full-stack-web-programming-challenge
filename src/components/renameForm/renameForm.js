@@ -30,10 +30,10 @@ const RenameForm = ({ factory, root, setRoot, showForm, setShowForm }) => {
     setRoot(root);
   }, [submitNewName]);
 
-  const axiosUpdate = (ident, name) => {
+  const axiosUpdate = (ident, update) => {
     const data = {
       ident: ident,
-      newName: updateName
+      newName: update
     };
     console.log("update data: ", data);
     //axios.put('http://localhost:4000/update-factory', data).then(res => {
