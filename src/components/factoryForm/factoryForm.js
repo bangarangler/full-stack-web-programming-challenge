@@ -90,18 +90,19 @@ const FactoryForm = ({ generateFactory, setRoot }) => {
         ident: ident
       })
       .then(async res => {
-        if (res.status === 200) {
-          console.log(res.data);
-          setMessage(res.data);
-          setRoot(res.data);
-          //await axios.get('http://localhost:4000/get-factory').then(res => {
-          await axios
-            .get("https://full-stack-web-challenge.herokuapp.com/get-factory")
-            .then(res => {
-              console.log("get log: ", res.data);
-              setRoot(res.data);
-            });
+        if (res.status !== 200) {
+          console.log("ERROR");
         }
+        console.log(res.data);
+        setMessage(res.data);
+        setRoot(res.data);
+        //await axios.get('http://localhost:4000/get-factory').then(res => {
+        await axios
+          .get("https://full-stack-web-challenge.herokuapp.com/get-factory")
+          .then(res => {
+            console.log("get log: ", res.data);
+            setRoot(res.data);
+          });
       })
       .catch(err => console.log(err));
   };
