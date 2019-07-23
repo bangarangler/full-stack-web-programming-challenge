@@ -32,7 +32,7 @@ const RenameForm = ({ factory, root, setRoot, showForm, setShowForm }) => {
 
   const axiosUpdate = (ident, update) => {
     const data = {
-      ident: factory.ident,
+      ident: ident,
       newName: update
     };
     console.log("update data: ", data);
