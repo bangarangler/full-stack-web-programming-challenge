@@ -13,8 +13,8 @@ const Factory = ({ factory, root, setRoot }) => {
     e.preventDefault();
     let keptFacts = [];
     root.filter(node => {
-      //console.log("node: ", node)
-      if (node.id !== factory.ident) {
+      console.log("node: ", node);
+      if (node.ident !== factory.ident) {
         keptFacts.push(node);
         //console.log("keptFacts: ", keptFacts)
       }
