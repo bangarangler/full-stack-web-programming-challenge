@@ -11,25 +11,17 @@ const RenameForm = ({ factory, root, setRoot, showForm, setShowForm }) => {
 
   const submitNewName = (e, ident) => {
     e.preventDefault();
-    //console.log("ident: ", ident);
     let update;
     root.map(node => {
-      //console.log("GROOT: ", node);
       if (node.ident === ident) {
         update = updateName;
-        console.log(update);
         node.factName = update;
-        //console.log("updated root?: ", root);
       }
-      //setRoot(root)
-      console.log("factory.ident", factory.ident)
-      console.log("update: ", update)
       axiosUpdate(factory.ident, update);
       setShowForm(!showForm);
       return update;
     });
   };
-  console.log(root);
   useEffect(() => {
     setRoot(root);
   }, [submitNewName]);
@@ -39,7 +31,7 @@ const RenameForm = ({ factory, root, setRoot, showForm, setShowForm }) => {
       ident: id,
       newName: updateName
     };
-    console.log("update data: ", data);
+    // SWITCH FOR LOCAL TESTING
     //axios
       //.put("http://localhost:4000/update-factory", data)
       axios

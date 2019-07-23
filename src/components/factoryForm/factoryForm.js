@@ -19,9 +19,6 @@ const FactoryForm = ({ generateFactory, setRoot }) => {
     resetChildrenGenerate
   ] = useFormState(undefined);
   const [children, setChildren] = useState([]);
-  const [id, setId] = useState("");
-  //const [toggle, setToggle] = useState(false)
-  //console.log("Ax: ", factoryName, childrenGenerate, lowRange, highRange, children)
   const reset = () => {
     resetFactoryName();
     resetChildrenGenerate();
@@ -29,11 +26,10 @@ const FactoryForm = ({ generateFactory, setRoot }) => {
     resetHighRange();
   };
 
-  //useEffect(() => {
-  //postFact()
-  //}, [highRange])
 
   const helperGenerator = (low, high) => {
+    // ACCEPTING HIGH AND LOW RANGE CONVERTING TO NUMBER
+    // CALCULATING RANDOM SET OF RANGES BETWEEN HIGH AND LOW
     return Math.floor(
       Math.random() * (Number(high) - Number(low) + 1) + Number(low)
     );
@@ -47,7 +43,6 @@ const FactoryForm = ({ generateFactory, setRoot }) => {
     }
     setChildren(numbers);
     return numbers;
-    //setChildren(numbers)
   };
 
   const factoryAddHandler = e => {
@@ -57,10 +52,8 @@ const FactoryForm = ({ generateFactory, setRoot }) => {
     } else if (factoryName === "") {
       setMessage("Factory Name Can Not Be Empty");
     } else {
-      //let tempFact = {}
       const numberOfChildren = randomNumberGenerator();
       const ident = uuid();
-      //console.log("children: ", children)
       let tempFact = {
         factName: factoryName,
         childGen: childrenGenerate,
@@ -69,17 +62,15 @@ const FactoryForm = ({ generateFactory, setRoot }) => {
         children: numberOfChildren,
         ident: ident
       };
-      //setNewFactory([...newFactory, ...tempFact])
       setMessage(null);
       generateFactory(tempFact);
-      //console.log('newFactory after: ', newFactory)
       postFact(numberOfChildren, ident);
       reset();
     }
   };
 
   const postFact = (numberOfChildren, ident) => {
-    console.log(factoryName, childrenGenerate, lowRange, highRange, children);
+    // SWITCH FOR LOCAL TESTING
     //axios.post('http://localhost:4000/add-factory', {
     axios
       .post("https://full-stack-web-challenge.herokuapp.com/add-factory", {
@@ -96,6 +87,7 @@ const FactoryForm = ({ generateFactory, setRoot }) => {
           setMessage(res.data);
         }
         console.log(res.data);
+        // SWITCH FOR LOCAL TESTING
         //await axios.get('http://localhost:4000/get-factory').then(res => {
         await axios
           .get("https://full-stack-web-challenge.herokuapp.com/get-factory")

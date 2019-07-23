@@ -11,24 +11,17 @@ import './SCSS/index.scss';
 
 function App() {
   const { loading, data } = useGetFactories(
+    // SWITCH FOR LOCAL TESTING
     //'http://localhost:4000/get-factory'
     'https://full-stack-web-challenge.herokuapp.com/get-factory'
   )
-  console.log(data)
   const [root, setRoot] = useState([])
-  //const [toggle, setToggle] = useState(false)
 
   const generateFactory = async (newFact) => {
-    //console.log("From generateFactory: ", newFact)
     await setRoot([...root, newFact])
     console.log("root", root)
   }
 
-  //useEffect(() => {
-    //setRoot()
-  //}, [root])
-
-  console.log("root: ", root)
   return (
     <div className="App">
     <header className='heading'>

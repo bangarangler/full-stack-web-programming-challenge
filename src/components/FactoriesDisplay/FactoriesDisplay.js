@@ -2,10 +2,7 @@ import React, {  useEffect } from 'react';
 
 import Factory from './Factory.js';
 
-//import styles from './FactoriesDisplay.module.scss';
-
 const FactoriesDisplay = ({ root, data, setRoot }) => {
-  //console.log("data on display: ", data)
 
   useEffect(() => {
     if (data === undefined) {
