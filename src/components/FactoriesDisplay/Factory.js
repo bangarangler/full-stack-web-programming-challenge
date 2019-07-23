@@ -14,21 +14,21 @@ const Factory = ({ factory, root, setRoot }) => {
     let keptFacts = [];
     root.filter(node => {
       //console.log("node: ", node)
-      if (node._id !== factory._id) {
+      if (node.id !== factory.ident) {
         keptFacts.push(node);
         //console.log("keptFacts: ", keptFacts)
       }
       //return keptFacts
       setRoot(keptFacts);
-      console.log("factoryID: ", factory._id);
-      axiosRemove(factory._id);
+      console.log("factoryID: ", factory.ident);
+      axiosRemove(factory.ident);
       return null;
     });
   };
 
   const axiosRemove = id => {
     console.log("axiosRemove id: ", id);
-    const data = { _id: id };
+    const data = { ident: id };
     //axios.delete('http://localhost:4000/remove-factory', {data}).then(res => {
     axios
       .delete("https://full-stack-web-challenge.herokuapp.com/remove-factory", {
