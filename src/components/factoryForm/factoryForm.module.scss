@@ -11,10 +11,19 @@
   margin: 1% auto;
   box-shadow: 0 2px 4px $bgColorDark;
   border-radius: 10px;
+  @media (max-width: 765px) {
+    width: 90%;
+  }
+  @media (max-width: 450px) {
+    width: 90%;
+  }
   .formHeading {
     color: $purp;
     align-self: center;
     font-weight: $bold;
+    @media (max-width: 450px) {
+      font-size: 2.5rem;
+    }
   }
   label:first-child {
     margin-top: 0;
