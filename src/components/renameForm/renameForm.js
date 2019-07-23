@@ -13,7 +13,7 @@ const RenameForm = ({ factory, root, setRoot, showForm, setShowForm }) => {
     let update;
     root.map(node => {
       console.log("GROOT: ", node);
-      if (node.ident === ident) {
+      if (node.ident === factory.ident) {
         update = updateName;
         console.log(update);
         node.factName = update;
@@ -30,17 +30,19 @@ const RenameForm = ({ factory, root, setRoot, showForm, setShowForm }) => {
     setRoot(root);
   }, [submitNewName]);
 
-  const axiosUpdate = (ident, update) => {
+  const axiosUpdate = (ident, name) => {
     const data = {
-      ident: ident,
-      newName: update
+      ident: factory.ident,
+      newName: updateName
     };
     console.log("update data: ", data);
-    //axios.put('http://localhost:4000/update-factory', data).then(res => {
-    axios
-      .put("https://full-stack-web-challenge.herokuapp.com/update-factory", {
-        data
-      })
+    //axios
+      //.put("http://localhost:4000/update-factory", data)
+      axios
+      .put(
+      "https://full-stack-web-challenge.herokuapp.com/update-factory",
+      {data}
+      )
       .then(res => {
         console.log(`res, ${res.data}`);
       })
