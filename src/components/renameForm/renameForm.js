@@ -60,7 +60,7 @@ const RenameForm = ({ factory, root, setRoot, showForm, setShowForm }) => {
         value={updateName}
         onChange={setUpdateName}
       />
-      <button onClick={e => submitNewName(e, factory._id)}>Update</button>
+      <button onClick={e => submitNewName(e, factory.ident)}>Update</button>
     </form>
   );
 };
