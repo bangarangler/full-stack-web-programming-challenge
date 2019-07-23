@@ -26,9 +26,9 @@ const Factory = ({ factory, root, setRoot }) => {
     });
   };
 
-  const axiosRemove = id => {
-    console.log("axiosRemove id: ", id);
-    const data = { ident: id };
+  const axiosRemove = ident => {
+    console.log("axiosRemove id: ", ident);
+    const data = { ident: ident };
     //axios.delete('http://localhost:4000/remove-factory', {data}).then(res => {
     axios
       .delete("https://full-stack-web-challenge.herokuapp.com/remove-factory", {
