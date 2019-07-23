@@ -4,6 +4,8 @@ import axios from "axios";
 
 import useFormState from "../../hooks/useFormState.js";
 
+import styles from './renameForm.module.scss';
+
 const RenameForm = ({ factory, root, setRoot, showForm, setShowForm }) => {
   const [updateName, setUpdateName] = useFormState("");
 
@@ -53,7 +55,7 @@ const RenameForm = ({ factory, root, setRoot, showForm, setShowForm }) => {
   };
 
   return (
-    <form>
+    <form className={styles.Form}>
       <input
         type="text"
         placeholder={factory.factName}

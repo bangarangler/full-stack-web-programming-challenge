@@ -4,6 +4,7 @@ import axios from "axios";
 import uuid from "uuid/v4";
 
 import useFormState from "../../hooks/useFormState.js";
+import Message from './Message.js';
 
 import styles from "./factoryForm.module.scss";
 
@@ -112,6 +113,7 @@ const FactoryForm = ({ generateFactory, setRoot }) => {
         <h3 className={styles.formHeading}>Generate your Factory</h3>
         <label htmlFor="factoryName">Factory Name</label>
         <input
+          className={styles.scaleUp}
           type="text"
           name="factoryName"
           value={factoryName}
@@ -151,7 +153,7 @@ const FactoryForm = ({ generateFactory, setRoot }) => {
         >
           Create Factory
         </button>
-        {message}
+    {message && <Message message={message}/>}
       </form>
     </div>
   );

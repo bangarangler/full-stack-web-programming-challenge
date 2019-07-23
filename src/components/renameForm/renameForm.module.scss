@@ -1,0 +1,60 @@
+@import '../../SCSS/index.scss';
+
+.Form {
+  @include customLayout(flex-start, center, column);
+  //@include showMe;
+  width: 100%;
+  input {
+    margin: 10px 0 3px;
+    border: none;
+    width: 50%;
+    height: 50px;
+    margin: 2% auto;
+    box-shadow: 0 2px 5px lighten($bgColorDark, 30%);
+    border-radius: 3px;
+    font-size: 3rem;
+    &:focus {
+      outline: none;
+    }
+  }
+  button {
+    background: $purp;
+    color: #fff;
+    border: none;
+    position: relative;
+    height: 50px;
+    font-size: 2.6em;
+    padding: 0 2em;
+    border-radius: 3px;
+    cursor: pointer;
+    transition: 800ms ease all;
+    outline: none;
+    margin-bottom: 2%;
+    &:hover {
+      background: #fff;
+      color: $purp;
+    }
+    &:before,
+    &:after {
+      content: '';
+      position: absolute;
+      top: 0;
+      right: 0;
+      height: 2px;
+      width: 0;
+      background: $purp;
+      transition: 400ms ease all;
+    }
+    &:after {
+      right: inherit;
+      top: inherit;
+      left: 0;
+      bottom: 0;
+    }
+    &:hover:before,
+    &:hover:after {
+      width: 100%;
+      transition: 800ms ease all;
+    }
+  }
+}

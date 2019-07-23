@@ -1,5 +1,7 @@
 import React, { useState } from "react";
 import axios from "axios";
+import { FaToggleOff, FaToggleOn } from 'react-icons/fa';
+import { IoMdClose } from 'react-icons/io';
 
 import RenameForm from "../renameForm/renameForm.js";
 
@@ -49,11 +51,14 @@ const Factory = ({ factory, root, setRoot }) => {
   return (
     <div className={styles.Wrapper}>
       <div className={styles.Display}>
+        <div className={styles.factoryNameContainer}>
         <p className={styles.Name}>
-          <span onClick={e => removeFactory(e, factory._id)}>X</span>&nbsp;
-          Factory Name: &nbsp; {factory.factName}
-          <span onClick={() => setShowForm(!showForm)}>^</span>
+    <span onClick={e => removeFactory(e, factory._id)}><IoMdClose className={styles.icons} /></span>&nbsp;
+    Factory Name: &nbsp; {factory.factName} &nbsp;
+    <span onClick={() => setShowForm(!showForm)}>{showForm === false ? <FaToggleOff className={styles.icons}/> : <FaToggleOn className={styles.icons} />}</span>
         </p>
+        </div>
+    </div>
         {showForm && (
           <RenameForm
             factory={factory}
@@ -70,7 +75,6 @@ const Factory = ({ factory, root, setRoot }) => {
             </div>
           );
         })}
-      </div>
     </div>
   );
 };
