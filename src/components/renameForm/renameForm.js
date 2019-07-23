@@ -9,17 +9,19 @@ const RenameForm = ({ factory, root, setRoot, showForm, setShowForm }) => {
 
   const submitNewName = (e, ident) => {
     e.preventDefault();
-    console.log("ident: ", ident);
+    //console.log("ident: ", ident);
     let update;
     root.map(node => {
-      console.log("GROOT: ", node);
+      //console.log("GROOT: ", node);
       if (node.ident === ident) {
         update = updateName;
         console.log(update);
         node.factName = update;
-        console.log("updated root?: ", root);
+        //console.log("updated root?: ", root);
       }
       //setRoot(root)
+      console.log("factory.ident", factory.ident)
+      console.log("update: ", update)
       axiosUpdate(factory.ident, update);
       setShowForm(!showForm);
       return update;
@@ -30,10 +32,10 @@ const RenameForm = ({ factory, root, setRoot, showForm, setShowForm }) => {
     setRoot(root);
   }, [submitNewName]);
 
-  const axiosUpdate = (id, name) => {
+  const axiosUpdate = async (id, name) => {
     const data = {
       ident: id,
-      newName: updateName
+      newName: name
     };
     console.log("update data: ", data);
     //axios
