@@ -7,20 +7,20 @@ import useFormState from "../../hooks/useFormState.js";
 const RenameForm = ({ factory, root, setRoot, showForm, setShowForm }) => {
   const [updateName, setUpdateName] = useFormState("");
 
-  const submitNewName = (e, id) => {
+  const submitNewName = (e, ident) => {
     e.preventDefault();
     //console.log("id: ", id)
     let update;
     root.map(node => {
       //console.log(node.factName)
-      if (node._id === id) {
+      if (node.ident === ident) {
         update = updateName;
         console.log(update);
         node.factName = update;
         console.log("updated root?: ", root);
       }
       //setRoot(root)
-      axiosUpdate(id, update);
+      axiosUpdate(ident, update);
       setShowForm(!showForm);
       return update;
     });
@@ -30,9 +30,9 @@ const RenameForm = ({ factory, root, setRoot, showForm, setShowForm }) => {
     setRoot(root);
   }, [submitNewName]);
 
-  const axiosUpdate = (id, name) => {
+  const axiosUpdate = (ident, name) => {
     const data = {
-      _id: id,
+      ident: ident,
       newName: updateName
     };
     console.log("update data: ", data);
